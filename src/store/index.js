@@ -8,14 +8,14 @@ function setupStore() {
   const logger = createLoggerMiddleware();
 
   let middlewares = [];
-
+  let store;
   if(process.env.NODE_ENV === 'development') {
     middlewares.push(logger);
+    store = createStore(rootReducer, composeWithDevTools(applyMiddleware(...middlewares)));
+  } else {
+    store = createStore(rootReducer);
   }
 
-  const store = (middlewares.length > 0)
-  ?      createStore(rootReducer, composeWithDevTools(applyMiddleware(...middlewares)))
-  :      createStore(rootReducer);
 
 
   if(module.hot) {
