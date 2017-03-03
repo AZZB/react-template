@@ -1,0 +1,31 @@
+'use strict';
+
+var path = require('path');
+var WriteFilePlugin = require('write-file-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+
+var config = {
+  entry: [
+    './src/index.js',
+  ],
+  output: {
+    filename: 'bundle.js',
+    path: path.join(__dirname, 'dist'),
+    publicPath: '/',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        use: ['babel-loader'],
+        exclude: /node_modules/
+      }
+    ]
+  },
+  plugins: [
+    new WriteFilePlugin(),
+    new HtmlWebpackPlugin({template: './index.html'}),
+  ]
+};
+
+module.exports = config;
