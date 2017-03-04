@@ -19,6 +19,22 @@ var config = {
         test: /\.(js|jsx)$/,
         use: ['babel-loader'],
         exclude: /node_modules/
+      },
+      {
+        test: /\.(sass|scss|css)$/,
+        use:{
+          // it depends on mod development or production,
+        },
+        exclude: /node_modules/
+      },
+      {
+        test: /\.(gif|png|jpe?g|svg)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: 'images/[hash:12].[ext]',
+        },
+        exclude: /node_modules/
       }
     ]
   },
